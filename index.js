@@ -3,7 +3,9 @@ var draw = (function() {
     var started=false;
     var canvas,context;
     var lastColor = 'white';
-    var mbs = 2;
+    var mbs = 12;
+    var x=0,y=0,px=0,py=0;
+    var dot=false;
 
     //Initializer
     init = function() {
@@ -15,9 +17,12 @@ var draw = (function() {
         context.lineWidth=2*mbs;
         canvas.width=window.innerWidth;
         canvas.height=window.innerHeight;
+
+        //add mouse event listeners
         canvas.addEventListener('mousedown',mouseStatus);
         canvas.addEventListener('mousemove',onMouseMove);
         canvas.addEventListener('mouseup',mouseStatus);
+        canvas.addEventListener('mouseout',mouseStatus);
 
 
         //initialing color pallete and their onclick events
@@ -39,8 +44,10 @@ var draw = (function() {
         //setting up erase listener, loading save and erase div
         var erase=document.getElementById("erase");
         var save=document.getElementById("save");
+        var clear=document.getElementById("clear");
         erase.addEventListener('click',onErase);
         save.addEventListener('click',onSave);
+        clear.addEventListener('click',onClear);
     }
 
     //Sets brush size
@@ -72,8 +79,13 @@ var draw = (function() {
     mouseStatus = function(e) {
         if(!mouse) {
             mouse=true;
-            console.log(mouse);
-            onMouseMove();
+            px=x;
+            py=y;
+            x=e.clientX-canvas.offsetLeft;
+            y=e.clientY-canvas.offsetTop;
+            context.beginPath();
+            context.fill(x,y,0,mbs,2*Math.PI);
+            context.closePath();
         }
         else {
             mouse=false;
@@ -84,20 +96,22 @@ var draw = (function() {
     onMouseMove = function(e) {
         
         if(mouse) {
-            var x,y;
 
-            x=e.pageX;
-            y=e.pageY;
+            px=x;
+            py=y;
+            x=e.clientX-canvas.offsetLeft;
+            y=e.clientY-canvas.offsetTop;
+
             context.lineWidth=2*mbs;
+            dot=true;
 
-            if(!started) {
-                started=true;
+            if(dot) {
                 context.beginPath();
-                context.moveTo(x,y);
-            }
-            else {
+                context.moveTo(px,py);
                 context.lineTo(x,y);
                 context.stroke();
+                context.closePath();
+                dot=false;
             }
         }
     }
@@ -105,6 +119,7 @@ var draw = (function() {
     //Handles eraser tool function
     onErase = function(e) {
         context.strokeStyle="#576060";
+        context.fillStyle="#576060";
         context.lineWidth=2*mbs;
     }
 
@@ -113,6 +128,10 @@ var draw = (function() {
         console.log('hello save');
         e.target.href=canvas.toDataURL();
         e.target.download="img.png";
+    }
+
+    onClear = function(e) {
+        context.clearRect(0,0,canvas.width,canvas.height);
     }
 })()
 
