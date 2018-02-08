@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>PaintMe</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-left">
+        <div class="navbar-brand">Colors</div>
+            <!--
+            <ul class="nav navbar-nav">
+                <li><div class="color" style="background-color: #FF0000;"></div></li>
+            </ul>-->
+
+            <div class="colors">
+                <div class="color" id="red" style="background:red;"></div>
+                <div class="color" id="black" style="background:black;"></div>
+                <div class="color" id="green" style="background:green;"></div>
+                <div class="color" id="blue" style="background:blue;"></div>
+                <div class="color" id="white" style="background:white;"></div>
+            </div>
+        </div>
+
+    <div class="board">
+        <canvas id="canvasview">
+            <!--
+            <p>Unfortunately, your browser is currently unsupported by our web application.  We are sorry for the inconvenience. Please use one 
+            of the supported browsers listed below, or draw the image you want using an offline tool.</p>
+            <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, 
+            <a href="http://www.mozilla.com">Firefox</a>, 
+            <a href="http://www.apple.com/safari">Safari</a>, and 
+            <a href="http://www.konqueror.org">Konqueror</a>.</p>-->
+        </canvas>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-right">
+        <div class="navbar-brand">Brush Size</div>
+            <ul class="nav navbar-nav">
+                <li><a class="bs" href="#" id="1">1</a></li>
+                <li><a class="bs" href="#" id="2">2</a></li>
+                <li><a class="bs" href="#" id="4">4</a></li>
+                <li><a class="bs" href="#" id="8">8</a></li>
+                <li><a class="bs" href="#" id="16">16</a></li>
+            </ul>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a href="" id="save">Save</a>
+            <img src="eraser.png" id="erase"></img>
+        </div>
+    </div>
+    <script src="index.js"></script>
+
+
+</body>
+</html>

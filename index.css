@@ -1,0 +1,67 @@
+.navbar-fixed-left {
+  width: 10vw;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  float:left;
+  margin:1%;
+  display:inline-block;
+}
+
+.color {
+    float:left;
+    width:9vw;
+    height:5vh;
+    margin:3%;
+    border-radius:3px;
+}
+
+
+.navbar-fixed-right{
+  width: 10vw;
+  float:right;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  margin:1%;
+  display:inline-block;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  
+}
+
+.navbar-fixed-right .navbar-nav > li {
+ float: none;
+}
+
+.panel-body {
+    position:fixed;
+    margin:1% auto;
+    bottom:0;
+    height:10%;
+    left:45%;
+    right:30%;
+    width:25%;
+}
+
+.board {
+    background:#576060;
+    height:80vh;
+    width:60vw;
+    margin:1%;
+    position:relative;
+    left:7%;
+    display:inline-block;
+    border-radius:5px;
+}
+
+canvas {
+    width:100%;
+    height:100%;
+}
+
+img {
+    margin:2%;
+}
+
