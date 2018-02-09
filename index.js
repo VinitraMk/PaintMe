@@ -1,11 +1,9 @@
 var draw = (function() {
     var mouse=false;
-    var started=false;
     var canvas,context;
     var lastColor = 'white';
-    var mbs = 12;
+    var mbs = 2;
     var x=0,y=0,px=0,py=0;
-    var dot=false;
 
     //Initializer
     init = function() {
@@ -81,14 +79,15 @@ var draw = (function() {
             mouse=true;
             px=x;
             py=y;
-            x=e.clientX-canvas.offsetLeft;
-            y=e.clientY-canvas.offsetTop;
+            x=e.clientX;
+            y=e.clientY;
             context.beginPath();
             context.fill(x,y,0,mbs,2*Math.PI);
             context.closePath();
         }
         else {
             mouse=false;
+            context.beginPath();
         }
     }
 
@@ -96,23 +95,16 @@ var draw = (function() {
     onMouseMove = function(e) {
         
         if(mouse) {
-
             px=x;
             py=y;
-            x=e.clientX-canvas.offsetLeft;
-            y=e.clientY-canvas.offsetTop;
-
+            x=e.clientX;
+            y=e.clientY;
             context.lineWidth=2*mbs;
-            dot=true;
-
-            if(dot) {
-                context.beginPath();
-                context.moveTo(px,py);
-                context.lineTo(x,y);
-                context.stroke();
-                context.closePath();
-                dot=false;
-            }
+            context.beginPath();
+            context.moveTo(px,py);
+            context.lineTo(x,y);
+            context.stroke();
+            context.closePath();
         }
     }
 
