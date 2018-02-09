@@ -1,7 +1,7 @@
 var draw = (function() {
     var mouse=false;
     var canvas,context;
-    var lastColor = 'white';
+    var lastColor = 'black';
     var mbs = 2;
     var x=0,y=0,px=0,py=0;
 
@@ -11,16 +11,19 @@ var draw = (function() {
 
         //initializing canvas window
         canvas=document.getElementById("canvasview");
+        var par=document.getElementById('board');
         context=canvas.getContext("2d");
         context.lineWidth=2*mbs;
-        canvas.width=window.innerWidth;
-        canvas.height=window.innerHeight;
+        //console.log('H: '+par.offsetWidth);
+        canvas.width=par.offsetWidth;
+        canvas.height=par.offsetHeight;
+
 
         //add mouse event listeners
         canvas.addEventListener('mousedown',mouseStatus);
         canvas.addEventListener('mousemove',onMouseMove);
         canvas.addEventListener('mouseup',mouseStatus);
-        canvas.addEventListener('mouseout',mouseStatus);
+        //canvas.addEventListener('mouseout',mouseStatus);
 
 
         //initialing color pallete and their onclick events
@@ -46,6 +49,10 @@ var draw = (function() {
         erase.addEventListener('click',onErase);
         save.addEventListener('click',onSave);
         clear.addEventListener('click',onClear);
+
+        //current color border
+        $('#'+lastColor).css("border","1px solid white");
+
     }
 
     //Sets brush size
@@ -82,12 +89,14 @@ var draw = (function() {
             x=e.clientX;
             y=e.clientY;
             context.beginPath();
-            context.fill(x,y,0,mbs,2*Math.PI);
+            context.arc(x,y,mbs,2,2*Math.PI);
+            context.fill();
             context.closePath();
+            onMouseMove(e);
         }
         else {
             mouse=false;
-            context.beginPath();
+            //context.beginPath();
         }
     }
 
